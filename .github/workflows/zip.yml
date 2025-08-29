@@ -17,6 +17,7 @@ jobs:
         repository: cluntop/tvbox
         token: ${{ secrets.GIT_TOKEN }}
         path: target-repo
+        depth: 1
 
     - name: wget the xiaosa 
       run: |
@@ -24,7 +25,7 @@ jobs:
         # cd xiaosa/
         wget https://gitee.com/PizazzXS/another-d/raw/master/%E5%8D%95%E7%BA%BF%E8%B7%AF.zip -O xiaosa.zip
         unzip xiaosa.zip
-        \cp -pdr TVBoxOSC/tvbox/* ./target-repo/test/xiaosa
+        \cp -pdr TVBoxOSC/tvbox/* ./target-repo/js/xiaosa
         rm -rf xiaosa.zip TVBoxOSC
       shell: bash
 
@@ -48,10 +49,12 @@ jobs:
 
     - name: Commit and push changes
       run: |
-        cd target-repo
+        ls && cd target-repo && ls
         git config user.name "GitHub Actions"
         git config user.email "actions@github.com"
 
         git add .
+        git reflog expire --expire=now --all
+        git gc --prune=now --aggressive --prune
         git commit -m "Update zip" || echo "No changes to commit"
         git push origin HEAD:main
