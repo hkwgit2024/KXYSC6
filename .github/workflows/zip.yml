@@ -1,22 +1,36 @@
 name: Update zip package
 
+permissions:
+  contents: read
+  actions: write
+
 on:
   schedule:
     - cron: '0 * * * *'  # 每小时自动处理运行
     # - cron: '0 0 * * *'  # 每天UTC时间00:00运行
   workflow_dispatch:     # 允许手动触发
 
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
+
+    - name: Delete old records
+      uses: Mattraks/delete-workflow-runs@main
+      with:
+        retain_days: 0       # 保留 0 天的记录
+        keep_minimum_runs: 0 # 至少保留 0 次记录
+
     - name: Checkout target repo
       uses: actions/checkout@v4
       with:
         repository: cluntop/tvbox
         token: ${{ secrets.GIT_TOKEN }}
         path: target-repo
+        depth: 1
 
     - name: wget the xiaosa 
       run: |
@@ -24,7 +38,7 @@ jobs:
         # cd xiaosa/
         wget https://gitee.com/PizazzXS/another-d/raw/master/%E5%8D%95%E7%BA%BF%E8%B7%AF.zip -O xiaosa.zip
         unzip xiaosa.zip
-        \cp -pdr TVBoxOSC/tvbox/* ./target-repo/test/xiaosa
+        \cp -pdr TVBoxOSC/tvbox/* ./target-repo/js/xiaosa
         rm -rf xiaosa.zip TVBoxOSC
       shell: bash
 
@@ -48,10 +62,12 @@ jobs:
 
     - name: Commit and push changes
       run: |
-        cd target-repo
+        ls && cd target-repo && ls
         git config user.name "GitHub Actions"
         git config user.email "actions@github.com"
 
         git add .
+        git reflog expire --expire=now --all
+        git gc --prune=now --aggressive --prune
         git commit -m "Update zip" || echo "No changes to commit"
         git push origin HEAD:main
