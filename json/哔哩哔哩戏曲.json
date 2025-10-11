@@ -1,5 +1,81 @@
 {
     "class": [
+    {
+      "type_name": "楚剧",
+      "type_id": "楚剧超清"
+    },
+    {
+      "type_name": "黄梅戏",
+      "type_id": "黄梅戏超清"
+    },
+    {
+      "type_name": "湖北大鼓",
+      "type_id": "湖北大鼓超清"
+    },
+    {
+      "type_name": "荆州花鼓戏",
+      "type_id": "荆州花鼓戏超清"
+    },
+    {
+      "type_name": "湖北汉剧",
+      "type_id": "湖北汉剧超清"
+    },
+    {
+      "type_name": "二人转",
+      "type_id": "二人转超清"
+    },
+    {
+      "type_name": "相声",
+      "type_id": "相声超清"
+    },
+    {
+      "type_name": "小品",
+      "type_id": "小品超清"
+    },
+    {
+      "type_name": "综艺",
+      "type_id": "综艺超清"
+    },
+    {
+      "type_name": "老电影",
+      "type_id": "老电影超清"
+    },
+    {
+      "type_name": "美食",
+      "type_id": "美食超清"
+    },
+    {
+      "type_name": "广场舞",
+      "type_id": "广场舞超清"
+    },
+    {
+      "type_name": "荒野求生",
+      "type_id": "荒野求生超清"
+    },
+    {
+      "type_name": "人文地理",
+      "type_id": "人文地理超清"
+    },
+    {
+      "type_name": "MV",
+      "type_id": "MV超清"
+    },
+    {
+      "type_name": "明星KTV",
+      "type_id": "明星KTV超清"
+    },
+    {
+      "type_name": "美女写真",
+      "type_id": "美女写真超清"
+    },
+    {
+      "type_name": "短剧",
+      "type_id": "短剧"
+    },
+    {
+      "type_name": "美食频道",
+      "type_id": "美食频道"
+    },
         {
             "type_name": "潮剧",
             "type_id": "潮剧"
@@ -197,4 +273,5 @@
             "type_id": "高腔"
         }
     ]
+
 }
