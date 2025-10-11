@@ -1,7 +1,6 @@
 //所有资源均来源搜集于网络，如有侵权，请联系删除！
 {
     "spider": "./jar/hkw2.jar",
-    "wallpaper": "http://bobohome.ignorelist.com:20247/bing",
     "logo": "./jar/logo.png",
     "sites": [
         {
