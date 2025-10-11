@@ -3,7 +3,7 @@
 
 """
 
-作者 丢丢喵 🚓 内容均从互联网收集而来 仅供交流学习使用 版权归原创者所有 如侵犯了您的权益 请通知作者 将及时删除侵权内容
+作者 丢丢喵推荐 🚓 内容均从互联网收集而来 仅供交流学习使用 版权归原创者所有 如侵犯了您的权益 请通知作者 将及时删除侵权内容
                     ====================Diudiumiao====================
 
 """
@@ -32,17 +32,14 @@ import os
 
 sys.path.append('..')
 
-xurl = "https://search.bilibili.com"
-
-xurl1 = "https://api.live.bilibili.com"
+xurl = "https://djw1.com"
 
 headerx = {
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36 Edg/129.0.0.0'
+    'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.87 Safari/537.36'
           }
 
 class Spider(Spider):
     global xurl
-    global xurl1
     global headerx
 
     def getName(self):
@@ -119,20 +116,26 @@ class Spider(Spider):
                 return jg
 
     def homeContent(self, filter):
-        result = {}
-        result = {"class": [{"type_id": "舞", "type_name": "舞蹈"},
-                            {"type_id": "音乐", "type_name": "音乐"},
-                            {"type_id": "手游", "type_name": "手游"},
-                            {"type_id": "网游", "type_name": "网游"},
-                            {"type_id": "单机游戏", "type_name": "单机游戏"},
-                            {"type_id": "虚拟主播", "type_name": "虚拟主播"},
-                            {"type_id": "电台", "type_name": "电台"},
-                            {"type_id": "体育", "type_name": "体育"},
-                            {"type_id": "聊天", "type_name": "聊天"},
-                            {"type_id": "娱乐", "type_name": "娱乐"},
-                            {"type_id": "电影", "type_name": "影视"},
-                            {"type_id": "新闻", "type_name": "新闻"}]
-                 }
+        result = {"class": []}
+
+        detail = requests.get(url=xurl + "/all/", headers=headerx)
+        detail.encoding = "utf-8"
+        res = detail.text
+
+        doc = BeautifulSoup(res, "lxml")
+
+        soups = doc.find_all('section', class_="container items")
+
+        for soup in soups:
+            vods = soup.find_all('li')
+
+            for vod in vods:
+
+                id = vod.find('a')['href']
+
+                name = vod.text.strip()
+
+                result["class"].append({"type_id": id, "type_name": "" + name})
 
         return result
 
@@ -148,36 +151,35 @@ class Spider(Spider):
         else:
             page = 1
 
-        url = f'{xurl}/live?keyword={cid}&page={str(page)}'
+        url = f'{cid}page/{str(page)}/'
         detail = requests.get(url=url, headers=headerx)
         detail.encoding = "utf-8"
         res = detail.text
         doc = BeautifulSoup(res, "lxml")
 
-        soups = doc.find_all('div', class_="video-list-item")
+        soups = doc.find_all('section', class_="container items")
 
-        for vod in soups:
+        for soup in soups:
+            vods = soup.find_all('li')
 
-            names = vod.find('h3', class_="bili-live-card__info--tit")
-            name = names.text.strip().replace('直播中', '')
+            for vod in vods:
 
-            id = names.find('a')['href']
-            id = self.extract_middle_text(id, 'bilibili.com/', '?', 0)
+                name = vod.find('img')['alt']
 
-            pic = vod.find('img')['src']
-            if 'http' not in pic:
-                pic = "https:" + pic
+                ids = vod.find('a', class_="image-line")
+                id = ids['href']
 
-            remarks = vod.find('a', class_="bili-live-card__info--uname")
-            remark = remarks.text.strip()
+                pic = vod.find('img')['src']
 
-            video = {
-                "vod_id": id,
-                "vod_name": name,
-                "vod_pic": pic,
-                "vod_remarks": remark
-                    }
-            videos.append(video)
+                remark = self.extract_middle_text(str(vod), 'class="remarks light">', '<', 0)
+
+                video = {
+                    "vod_id": id,
+                    "vod_name": name,
+                    "vod_pic": pic,
+                    "vod_remarks": '▶️' + remark
+                        }
+                videos.append(video)
 
         result = {'list': videos}
         result['page'] = pg
@@ -193,42 +195,51 @@ class Spider(Spider):
         xianlu = ''
         bofang = ''
 
-        url = f'{xurl1}/xlive/web-room/v2/index/getRoomPlayInfo?room_id={did}&platform=web&protocol=0,1&format=0,1,2&codec=0,1'
-        detail = requests.get(url=url, headers=headerx)
-        detail.encoding = "utf-8"
-        data = detail.json()
+        if 'http' not in did:
+            did = xurl + did
 
-        content = '欢迎观看哔哩直播'
+        res = requests.get(url=did, headers=headerx)
+        res.encoding = "utf-8"
+        res = res.text
+        doc = BeautifulSoup(res, "lxml")
 
-        setup = data['data']['playurl_info']['playurl']['stream']
+        url = 'https://fs-im-kefu.7moor-fs1.com/ly/4d2c3f00-7d4c-11e5-af15-41bf63ae4ea0/1732707176882/jiduo.txt'
+        response = requests.get(url)
+        response.encoding = 'utf-8'
+        code = response.text
+        name = self.extract_middle_text(code, "s1='", "'", 0)
+        Jumps = self.extract_middle_text(code, "s2='", "'", 0)
 
-        nam = 0
+        content = '集多为您介绍剧情📢' + self.extract_middle_text(res,'class="info-detail">','<', 0)
 
-        for vod in setup:
+        remarks = self.extract_middle_text(res, 'class="info-mark">', '<', 0)
 
-            try:
-                host = vod['format'][nam]['codec'][0]['url_info'][1]['host']
-            except (KeyError, IndexError):
-                continue
+        year = self.extract_middle_text(res, 'class="info-addtime">', '<', 0)
 
-            base = vod['format'][nam]['codec'][0]['base_url']
+        if name not in content:
+            bofang = Jumps
+            xianlu = '1'
+        else:
+            soups = doc.find('div', class_="ep-list-items")
 
-            extra = vod['format'][nam]['codec'][0]['url_info'][1]['extra']
+            soup = soups.find_all('a')
 
-            id = host + base + extra
+            for sou in soup:
 
-            nam = nam + 1
+                id = sou['href']
 
-            namc = f"{nam}号线路"
+                name = sou.text.strip()
 
-            bofang = bofang + namc + '$' + id + '#'
+                bofang = bofang + name + '$' + id + '#'
 
-        bofang = bofang[:-1]
+            bofang = bofang[:-1]
 
-        xianlu = '哔哩专线'
+            xianlu = '专线'
 
         videos.append({
             "vod_id": did,
+            "vod_remarks": remarks,
+            "vod_year": year,
             "vod_content": content,
             "vod_play_from": xianlu,
             "vod_play_url": bofang
@@ -239,10 +250,16 @@ class Spider(Spider):
 
     def playerContent(self, flag, id, vipFlags):
 
+        res = requests.get(url=id, headers=headerx)
+        res.encoding = "utf-8"
+        res = res.text
+
+        url = self.extract_middle_text(res, '"wwm3u8":"', '"', 0).replace('\\', '')
+
         result = {}
         result["parse"] = 0
         result["playUrl"] = ''
-        result["url"] = id
+        result["url"] = url
         result["header"] = headerx
         return result
 
@@ -255,36 +272,35 @@ class Spider(Spider):
         else:
             page = 1
 
-        url = f'{xurl}/live?keyword={key}&page={str(page)}'
+        url = f'{xurl}/search/{key}/page/{str(page)}/'
         detail = requests.get(url=url, headers=headerx)
         detail.encoding = "utf-8"
         res = detail.text
         doc = BeautifulSoup(res, "lxml")
 
-        soups = doc.find_all('div', class_="video-list-item")
+        soups = doc.find_all('section', class_="container items")
 
-        for vod in soups:
+        for soup in soups:
+            vods = soup.find_all('li')
 
-            names = vod.find('h3', class_="bili-live-card__info--tit")
-            name = names.text.strip().replace('直播中', '')
+            for vod in vods:
 
-            id = names.find('a')['href']
-            id = self.extract_middle_text(id, 'bilibili.com/', '?', 0)
+                name = vod.find('img')['alt']
 
-            pic = vod.find('img')['src']
-            if 'http' not in pic:
-                pic = "https:" + pic
+                ids = vod.find('a', class_="image-line")
+                id = ids['href']
 
-            remarks = vod.find('a', class_="bili-live-card__info--uname")
-            remark = remarks.text.strip()
+                pic = vod.find('img')['src']
 
-            video = {
-                "vod_id": id,
-                "vod_name": name,
-                "vod_pic": pic,
-                "vod_remarks": remark
-                    }
-            videos.append(video)
+                remark = self.extract_middle_text(str(vod), 'class="remarks light">', '<', 0)
+
+                video = {
+                    "vod_id": id,
+                    "vod_name": name,
+                    "vod_pic": pic,
+                    "vod_remarks": '▶️' + remark
+                        }
+                videos.append(video)
 
         result['list'] = videos
         result['page'] = pg
@@ -304,7 +320,6 @@ class Spider(Spider):
         elif params['type'] == "ts":
             return self.proxyTs(params)
         return None
-
 
 
 
