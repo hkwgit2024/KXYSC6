@@ -703,28 +703,28 @@
             "key": "腾讯视频",
             "name": "腾讯｜视频",
             "type": 3,
-            "api": "./js/drpy2.min.js",
+            "api": "http://183.66.27.14:99/7899/88267/js/drpy2.min.js",
             "ext": "./js/腾讯视频.js"
         },
         {
             "key": "优酷视频",
             "name": "优酷｜视频",
             "type": 3,
-            "api": "./js/drpy2.min.js",
+            "api": "http://183.66.27.14:99/7899/88267/js/drpy2.min.js",
             "ext": "./js/优酷视频.js"
         },
         {
             "key": "芒果视频",
             "name": "芒果｜视频",
             "type": 3,
-            "api": "./js/drpy2.min.js",
+            "api": "http://183.66.27.14:99/7899/88267/js/drpy2.min.js",
             "ext": "./js/芒果视频.js"
         },
         {
             "key": "爱奇艺",
             "name": "爱奇异｜视频",
             "type": 3,
-            "api": "./js/drpy2.min.js",
+            "api": "http://183.66.27.14:99/7899/88267/js/drpy2.min.js",
             "ext": "./js/爱奇艺.js"
         },
         {
@@ -913,7 +913,7 @@
             "key": "双星",
             "name": "双星｜4K",
             "type": 3,
-            "api": "./js/drpy2.min.js",
+            "api": "http://183.66.27.14:99/7899/88267/js/drpy2.min.js",
             "ext": "./js/双星.js",
             "style": {
                 "type": "list"
