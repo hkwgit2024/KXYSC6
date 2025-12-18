@@ -50,7 +50,7 @@ jobs:
       run: |
         git checkout --orphan latest_branch
         git add -A
-        git commit -m "purge history and cleanup garbage"
+        git commit -m "purge history"
         git branch -D main
         git branch -m main
 

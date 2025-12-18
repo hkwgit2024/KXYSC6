@@ -61,7 +61,7 @@ jobs:
         if [ -n "$(git status --porcelain)" ]; then
           echo "Changes detected, committing..."
           git add .
-          git commit -m "Update m3u $(date '+%m-%d %H:%M')"
+          git commit -m "Update m3u"
           
           git pull --rebase origin main
           git push origin main
