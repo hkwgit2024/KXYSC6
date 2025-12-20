@@ -1427,6 +1427,21 @@
 			"url": "Web"
 		},
 		{
+			"name": "观山",
+			"type": 0,
+			"url": "https://p10.zijincao.cc/?url="
+		},
+		{
+			"name": "抚琴",
+			"type": 0,
+			"url": "https://jx.xmflv.com/?url="
+		},
+		{
+			"name": "七哥",
+			"url": "https://jx.nnxv.cn/tv.php?url=",
+			"type": 0
+		},
+		{
 			"name": "777",
 			"type": 0,
 			"url": "https://www.huaqi.live/?url="
@@ -1449,11 +1464,6 @@
 		{
 			"name": "PM",
 			"url": "https://www.playm3u8.cn/jiexi.php?url=",
-			"type": 0
-		},
-		{
-			"name": "七哥",
-			"url": "https://jx.nnxv.cn/tv.php?url=",
 			"type": 0
 		}
 	],
