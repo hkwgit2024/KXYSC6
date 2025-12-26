@@ -9,6 +9,7 @@
             "type": 3,
             "api": "./js/drpy2.min.js",
             "ext": "./js/腾讯视频.js"
+			"jar": "./jar/svip.jar
         },
         {
             "key": "优酷视频",
@@ -16,6 +17,7 @@
             "type": 3,
             "api": "./js/drpy2.min.js",
             "ext": "./js/优酷视频.js"
+			"jar": "./jar/svip.jar
         },
         {
             "key": "芒果视频",
@@ -23,6 +25,7 @@
             "type": 3,
             "api": "./js/drpy2.min.js",
             "ext": "./js/芒果视频.js"
+			"jar": "./jar/svip.jar
         },
         {
             "key": "爱奇艺",
@@ -30,6 +33,7 @@
             "type": 3,
             "api": "./js/drpy2.min.js",
             "ext": "./js/爱奇艺.js"
+			"jar": "./jar/svip.jar
         },
         {
             "key": "三六零",
