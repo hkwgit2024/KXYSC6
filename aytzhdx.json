@@ -1,6 +1,6 @@
 //所有资源均来源搜集于网络，如有侵权，请联系删除！
 {
-    "spider": "./jar/fan.jar",
+    "spider": "./jar/svip.jar",
     "logo": "./jar/logo.png",
     "sites": [
 		{
