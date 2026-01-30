@@ -1,36 +1,36 @@
 ﻿{
-    "spider": "./jar/custom_spider.jar",
+    "spider": "https://gh-proxy.com/https://raw.githubusercontent.com/hkwgit2024/KXYSC6/refs/heads/main/pg.jar",
     "wallpaper": "https://sgmao.serv00.net/image/",
     "logo": "https://4708.kstore.space/logo.gif",
     "sites": [
-	    {
-            "key": "腾讯视频",
-            "name": "🐧腾讯┃买康兄影视盒子就送双端专享会员",
-            "type": 3,
-            "api": "./js/drpy2.min.js",
-            "ext": "./js/腾讯视频.js"
-        },
-        {
-            "key": "优酷视频",
-            "name": "🍎优酷┃买康兄影视盒子就送双端专享会员",
-            "type": 3,
-            "api": "./js/drpy2.min.js",
-            "ext": "./js/优酷视频.js"
-        },
-        {
-            "key": "芒果视频",
-            "name": "🥝芒果┃买康兄影视盒子就送双端专享会员",
-            "type": 3,
-            "api": "./js/drpy2.min.js",
-            "ext": "./js/芒果视频.js"
-        },
-        {
-            "key": "爱奇艺",
-            "name": "🥭爱奇艺┃买康兄影视盒子就送双端专享会员",
-            "type": 3,
-            "api": "./js/drpy2.min.js",
-            "ext": "./js/爱奇艺.js"
-        },
+    {
+      "key": "drpy_js_奇珍异兽",
+      "name": "🥭奇兽┃买康兄影视盒子就送双端专享会员",
+      "type": 3,
+      "api": "https://gh-proxy.com/https://raw.githubusercontent.com/xyq254245/xyqonlinerule/main/dr_py/libs/drpy2.min.js",
+      "ext": "https://gh-proxy.com/https://raw.githubusercontent.com/xyq254245/xyqonlinerule/main/dr_py/js/奇珍异兽.js"
+    },
+    {
+      "key": "drpy_js_优酷",
+      "name": "🍎酷比┃买康兄影视盒子就送双端专享会员",
+      "type": 3,
+      "api": "https://gh-proxy.com/https://raw.githubusercontent.com/xyq254245/xyqonlinerule/main/dr_py/libs/drpy2.min.js",
+      "ext": "https://gh-proxy.com/https://raw.githubusercontent.com/xyq254245/xyqonlinerule/main/dr_py/js/优酷.js"
+    },
+    {
+      "key": "drpy_js_腾云驾雾",
+      "name": "🐧腾云┃买康兄影视盒子就送双端专享会员",
+      "type": 3,
+      "api": "https://gh-proxy.com/https://raw.githubusercontent.com/xyq254245/xyqonlinerule/main/dr_py/libs/drpy2.min.js",
+      "ext": "https://gh-proxy.com/https://raw.githubusercontent.com/xyq254245/xyqonlinerule/main/dr_py/js/腾云驾雾.js"
+    },
+    {
+      "key": "drpy_js_百忙无果",
+      "name": "🥝无果┃买康兄影视盒子就送双端专享会员",
+      "type": 3,
+      "api": "https://gh-proxy.com/https://raw.githubusercontent.com/xyq254245/xyqonlinerule/main/dr_py/libs/drpy2.min.js",
+      "ext": "https://gh-proxy.com/https://raw.githubusercontent.com/xyq254245/xyqonlinerule/main/dr_py/js/百忙无果.js"
+    },
         {
             "key": "三六零",
             "name": "🌲360影视┃买康兄影视盒子就送双端专享会员",
